@@ -1,7 +1,11 @@
 import axios from "axios";
 
-// In dev, CRA proxy forwards /api/* → http://localhost:5000
-const api = axios.create({ timeout: 30000 });
+const API_BASE_URL = "https://norma-translator-ob0c.onrender.com";
+
+const api = axios.create({
+  baseURL: API_BASE_URL,
+  timeout: 30000,
+});
 
 export async function translateText(text, language) {
   const res = await api.post("/api/translate", { text, language });
